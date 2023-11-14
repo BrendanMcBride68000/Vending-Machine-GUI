@@ -1,28 +1,35 @@
+import pytest
 from vending_machine_BM import VendingMachine, WaitingState, AddCoinsState, DeliverProductState, CountChangeState
 
+@pytest.fixture
 def test_VendingMachine():
- # new machine object
- vending = VendingMachine()
+    machine = VendingMachine()
+    machine.add_state(WaitingState())
+    machine.add_state(AddCoinsState())
+    machine.add_state(DeliverProductState())
+    machine.add_state(CountChangeState())
+    machine.go_to_state('waiting')
+    return machine
 
- # Add the states - ORG
- # vending.add_state(WaitingState())
- # vending.add_state(CoinsState())
- # vending.add_state(DispenseState())
- # vending.add_state(ChangeState())
+def test_initial_amount(test_VendingMachine):
+    assert test_VendingMachine.amount == 0
 
- # My revisions
- vending.add_state(WaitingState())
- vending.add_state(AddCoinsState())
- vending.add_state(DeliverProductState())
- vending.add_state(CountChangeState())
+def test_add_nickel(test_VendingMachine):
+    test_VendingMachine.add_coin('Nickel (5¢)')
+    assert test_VendingMachine.amount == 5
 
+def test_add_dime(test_VendingMachine):
+    test_VendingMachine.add_coin('Dime (10¢)')
+    assert test_VendingMachine.amount == 10
 
- # Reset state is "waiting for first coin"
- vending.go_to_state('waiting')
- assert vending.state.name == 'waiting'
+def test_add_quarter(test_VendingMachine):
+    test_VendingMachine.add_coin('Quarter (25¢)')
+    assert test_VendingMachine.amount == 25
+    
+def test_add_quarter(test_VendingMachine):
+    test_VendingMachine.add_coin('Loonie ($1)')
+    assert test_VendingMachine.amount == 100
 
- # test that the first coin causes a transition to 'coins'
- vending.event = '200' # a twonie
- vending.update()
- assert vending.state.name == 'add_coins'
- assert vending.amount == 200 # pennies, was .total
+def test_add_quarter(test_VendingMachine):
+    test_VendingMachine.add_coin('Toonie ($2)')
+    assert test_VendingMachine.amount == 200
