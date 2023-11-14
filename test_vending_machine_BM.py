@@ -1,4 +1,4 @@
-from vending_machine_graphical import VendingMachine, WaitingState, AddCoinsState, DeliverProductState, CountChangeState
+from vending_machine_BM import VendingMachine, WaitingState, AddCoinsState, DeliverProductState, CountChangeState
 
 def test_VendingMachine():
  # new machine object
