@@ -58,9 +58,13 @@ class VendingMachine(object):
     }
     
     # List of coins: each tuple is ("VALUE", value in cents)
-    COINS = {"5": ("5", 5),
-
-            }
+    COINS = {
+        "Nickel (5¢)": ("Nickel", 5),
+        "Dime (10¢)": ("Dime", 10),
+        "Quarter (25¢)": ("Quarter", 25),
+        "Loonie ($1)": ("Loonie", 100),
+        "Toonie ($2)": ("Toonie", 200),
+    }
 
 
     def __init__(self):
