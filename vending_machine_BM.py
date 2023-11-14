@@ -49,11 +49,14 @@ def log(s):
 # is the products and prices, and the coins inserted and change due.
 # For testing purposes, output is to stdout, also ensure use of Docstring, in class
 class VendingMachine(object):
+    PRODUCTS = {
+        "YM3812 (OPL2)": ("YM3812", 50),
+        "YM2612 (OPN2)": ("YM2612", 75),
+        "YM2151 (OPM)": ("YM2151", 100),
+        "YM2149F (SSG)": ("YM2149F", 25),
+        "YM2610 (OPNB)": ("YM2610", 120),
+    }
     
-    PRODUCTS = {"suprise": ("SURPRISE", 5),
-
-                }
-
     # List of coins: each tuple is ("VALUE", value in cents)
     COINS = {"5": ("5", 5),
 
