@@ -207,7 +207,7 @@ if __name__ == "__main__":
         row = [button]
         select_col.append(row)
 
- layout = [
+    layout = [
         [sg.Text("Current Balance: $0.00", key="balance_display", font=("Helvetica", 18))],
         [sg.Column(coin_col, vertical_alignment="TOP"),
          sg.VSeparator(),
