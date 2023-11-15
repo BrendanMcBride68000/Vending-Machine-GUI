@@ -18,7 +18,7 @@
 # https://pysimplegui.readthedocs.io/en/latest/cookbook/#asynchronous-window-with-periodic-update
 
 import PySimpleGUI as sg
-
+from time import sleep
 
 # Hardware interface module
 # Button basic recipe: *** define the pin you used
@@ -28,7 +28,9 @@ import PySimpleGUI as sg
 #Where am I?
 hardware_present = False
 try:
-    #*** define the pin you used
+    from gpiozero import Button, Servo
+    servo = Servo(17)
+    key1 = Button(5)
     hardware_present = True
 except ModuleNotFoundError:
     print("Not on a Raspberry Pi or gpiozero not installed.")
@@ -159,6 +161,13 @@ class DeliverProductState(State):
             machine.go_to_state('count_change')
         else:
             machine.go_to_state('waiting')
+            # Move the servo to dispense the product
+        servo.min()  # Move to the minimum position (0 degrees)
+        sleep(1)  
+        servo.mid()  # Move to the mid position (90 degrees)
+        sleep(1)  
+        servo.max()  # Move to the maximum position (180 degrees)
+        sleep(1)  
 
 # Count out the change in coins 
 class CountChangeState(State):
