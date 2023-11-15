@@ -198,10 +198,12 @@ if __name__ == "__main__":
         row = [button]
         select_col.append(row)
 
-    layout = [ [sg.Column(coin_col, vertical_alignment="TOP"),
-                     sg.VSeparator(),
-                     sg.Column(select_col, vertical_alignment="TOP")
-                    ] ]
+ layout = [
+        [sg.Text("Current Balance: $0.00", key="balance_display", font=("Helvetica", 18))],
+        [sg.Column(coin_col, vertical_alignment="TOP"),
+         sg.VSeparator(),
+         sg.Column(select_col, vertical_alignment="TOP")]
+    ]
     layout.append([sg.Button("RETURN", font=("Helvetica", 12))])
     window = sg.Window('Vending Machine', layout)
 
@@ -236,6 +238,8 @@ if __name__ == "__main__":
             break
         vending.event = event
         vending.update()
+
+        window["balance_display"].update(f"Current Balance: ${vending.amount / 100:.2f}")
 
     window.close()
     print("Normal exit")
