@@ -16,6 +16,9 @@
 #
 # Asynchronous Window With Periodic Update
 # https://pysimplegui.readthedocs.io/en/latest/cookbook/#asynchronous-window-with-periodic-update
+#
+# Info on Yamaha sound chips
+# https://gist.github.com/bryc/e85315f758ff3eced19d2d4fdeef01c5
 
 import PySimpleGUI as sg
 from time import sleep
