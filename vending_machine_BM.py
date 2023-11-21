@@ -164,13 +164,14 @@ class DeliverProductState(State):
             machine.go_to_state('count_change')
         else:
             machine.go_to_state('waiting')
+        if hardware_present == True:
             # Move the servo to dispense the product
-        servo.min()  # Move to the minimum position (0 degrees)
-        sleep(1)  
-        servo.mid()  # Move to the mid position (90 degrees)
-        sleep(1)  
-        servo.max()  # Move to the maximum position (180 degrees)
-        sleep(1)  
+            servo.min()  # Move to the minimum position (0 degrees)
+            sleep(1)  
+            servo.mid()  # Move to the mid position (90 degrees)
+            sleep(1)  
+            servo.max()  # Move to the maximum position (180 degrees)
+            sleep(1)  
 
 # Count out the change in coins 
 class CountChangeState(State):
